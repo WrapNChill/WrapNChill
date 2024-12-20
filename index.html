@@ -1,0 +1,1095 @@
+<html><head><base href="/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00b4d8;
+      --secondary: #90e0ef;
+      --accent: #caf0f8;
+      --text: #e0e0e0;
+      --dark: #0a1520;  
+      --light: #FFFFFF;
+      --gradient: linear-gradient(135deg, rgba(144,224,239,0.1), rgba(202,240,248,0.05));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .navbar {
+      background: var(--dark);
+      padding: 1.5rem 2rem;
+      position: fixed;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+
+    .nav-links a:hover::before {
+      transform: translateX(0);
+    }
+
+    .nav-links a:hover {
+      color: var(--dark);
+    }
+
+    .hero {
+      background: var(--dark);
+      background: linear-gradient(45deg, #0a1520, #0f2030);
+      color: var(--light);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0,180,216,0.1) 0%, transparent 70%);
+      animation: pulse 4s infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, 
+        rgba(0,180,216,0.03) 0%,
+        rgba(144,224,239,0.02) 50%,
+        rgba(202,240,248,0.01) 100%
+      );
+      animation: glow 8s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.5); opacity: 0.2; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+
+    @keyframes glow {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .hero-text {
+      color: var(--light);
+      z-index: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .hero-image {
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .cta-button {
+      background: var(--accent);
+      color: var(--dark);
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulseButton 2s infinite;
+    }
+
+    @keyframes pulseButton {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { opacity: 0.5; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    .features {
+      background: var(--dark);
+      color: var(--light);
+      padding: 8rem 2rem;
+      background-size: 40px 40px;
+      animation: patternMove 20s linear infinite;
+      position: relative;
+    }
+
+    @keyframes patternMove {
+      0% { background-position: 0 0, 0 0, 20px 20px, 20px 20px; }
+      100% { background-position: 40px 40px, 40px 40px, 60px 60px, 60px 60px; }
+    }
+
+    .features-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: rgba(10,21,32,0.9);
+      border-radius: 15px;
+      padding: 2rem;
+      color: var(--light);
+      backdrop-filter: blur(10px);
+      transform-style: preserve-3d;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: 0 0 20px rgba(0,180,216,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card:hover {
+      transform: translateZ(30px) scale(1.05);
+      background: rgba(15,32,48,0.9);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 1rem;
+      fill: var(--primary);
+      filter: drop-shadow(0 0 5px rgba(108,99,255,0.5));
+      animation: floatIcon 3s ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+      animation: textGlow 2s infinite alternate;
+    }
+
+    @keyframes textGlow {
+      from {
+        text-shadow: 0 0 2px var(--primary), 0 0 4px var(--primary);
+      }
+      to {
+        text-shadow: 0 0 8px var(--primary), 0 0 12px var(--primary);
+      }
+    }
+
+    .feature-card svg path, 
+    .feature-card svg circle {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: drawPath 3s ease forwards;
+    }
+
+    @keyframes drawPath {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,180,216,0.1) 0%, transparent 70%);
+      animation: rotatePulse 8s infinite linear;
+    }
+
+    @keyframes rotatePulse {
+      0% {
+        transform: rotate(0deg) scale(0.8);
+        opacity: 0.3;
+      }
+      50% {
+        transform: rotate(180deg) scale(1.2);
+        opacity: 0.6;
+      }
+      100% {
+        transform: rotate(360deg) scale(0.8);
+        opacity: 0.3;
+      }
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--primary);
+      border-radius: 50%;
+      filter: blur(1px);
+      animation: floatingParticle 4s infinite;
+      opacity: 0.5;
+    }
+
+    @keyframes floatingParticle {
+      0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0;
+      }
+      25% {
+        transform: translate(100%, -50%);
+        opacity: 0.5;
+      }
+      50% {
+        transform: translate(200%, 0);
+        opacity: 0;
+      }
+    }
+
+    .hover-particle {
+      position: absolute;
+      pointer-events: none;
+      width: 4px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: particleFloat 1s ease-out forwards;
+    }
+
+    @keyframes particleFloat {
+      0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0) translate(var(--random-x, 50px), var(--random-y, -50px));
+        opacity: 0;
+      }
+    }
+
+    .tab-content {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      padding: 4rem 2rem 0 2rem;
+      background: transparent;
+      color: var(--light);
+      width: 100%;
+      transform: translateY(20px);
+      transition: all 0.4s ease-in-out;
+    }
+
+    .tab-content.active {
+      opacity: 1;
+      visibility: visible;
+      position: relative;
+      transform: translateY(0);
+    }
+
+    .tab-section {
+      background: linear-gradient(180deg, var(--dark) 0%, #0f2030 100%);
+      padding: 6rem 0 0 0;
+      color: var(--light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tab-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 1rem;
+    }
+
+    .tab-button {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 1rem 2rem;
+      border-radius: 25px;
+      color: var(--light);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+    }
+
+    .tab-button.active {
+      background: var(--primary);
+      color: var(--light);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+
+    .product-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 15px;
+      padding: 2rem;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      align-items: center;
+      color: var(--light);
+      backdrop-filter: blur(10px);
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.05),
+        transparent
+      );
+      transform: skewX(-25deg);
+      animation: shine 4s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 200%; }
+      100% { left: 200%; }
+    }
+
+    .product-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), 
+                                 rgba(108,99,255,0.2) 0%, 
+                                 transparent 50%);
+      border-radius: 15px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .product-card:hover::after {
+      opacity: 1;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .interactive-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      color: var(--light);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 0;
+      padding-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-animated {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      transition: all 0.3s;
+      outline: none;
+      color: var(--light);
+    }
+
+    .input-animated::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+
+    .input-animated:focus {
+      background: rgba(255,255,255,0.15);
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(108,99,255,0.2);
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .floating-shape {
+      position: absolute;
+      background: linear-gradient(45deg, 
+        rgba(10,21,32,0.8),
+        rgba(0,180,216,0.05),
+        rgba(144,224,239,0.02)
+      );
+      border-radius: 50%;
+      pointer-events: none;
+      animation: float 20s infinite;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 0 30px rgba(0,180,216,0.05);
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, 100px) rotate(90deg); }
+      50% { transform: translate(0, 200px) rotate(180deg); }
+      75% { transform: translate(-100px, 100px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+  <style>
+    .product-showcase {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 2rem 0 2rem;
+    }
+
+    .product-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      align-items: center;
+    }
+
+    .product-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleGlow 3s infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { filter: drop-shadow(0 0 2px var(--primary)); }
+      to { filter: drop-shadow(0 0 8px var(--primary)); }
+    }
+
+    .product-visual {
+      position: relative;
+      height: 400px;
+      background: var(--gradient);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .product-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,180,216,0.2), transparent);
+      animation: visualPulse 4s infinite;
+    }
+
+    @keyframes visualPulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.2; }
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+
+    .spec-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+
+    .spec-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .spec-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .features-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+
+    .feature-item:hover {
+      background: rgba(255,255,255,0.05);
+      transform: translateX(10px);
+    }
+
+    .cta-section {
+      text-align: center;
+      margin: 4rem 0 0 0;
+      padding: 4rem;
+      background: var(--gradient);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-tag {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 2rem 0;
+      animation: priceFloat 3s infinite;
+    }
+
+    @keyframes priceFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 100 100">
+        <path d="M20,50 Q50,20 80,50 Q50,80 20,50" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <circle cx="50" cy="50" r="10" fill="var(--accent)"/>
+      </svg>
+      <span>Wrap &amp; Chill</span>
+    </div>
+    <div class="nav-links">
+      <a href="#products-content">Products</a> 
+      <a href="#features-content">Features</a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Recovery Done Right</h1>
+          <p>Experience the future of athletic recovery with Wrap &amp; Chill</p>
+          <button class="cta-button">Discover More</button>
+        </div>
+        <div class="hero-image">
+          <svg class="tech-illustration" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <path d="M60 100 L140 100" stroke="var(--accent)" stroke-width="2"/>
+            <circle cx="100" cy="100" r="20" fill="var(--accent)" opacity="0.5"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+    
+    <div id="products" class="features"></div>
+    <section id="features" class="features">
+      <div class="features-grid">
+        <div class="feature-card animate-in">
+          <svg class="feature-icon" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="var(--primary)" stroke-width="2"/>
+          </svg>
+          <h3>Advanced Recovery</h3>
+          <p>State-of-the-art cooling technology for optimal muscle recovery and performance.</p>
+        </div>
+        <div class="feature-card animate-in">
+          <svg class="feature-icon" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="var(--primary)" stroke-width="2"/>
+          </svg>
+          <h3>Medical Grade</h3>
+          <p>Premium materials and construction ensure safe, effective treatment every time.</p>
+        </div>
+        <div class="feature-card animate-in">
+          <svg class="feature-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="var(--primary)" stroke-width="2"/>
+            <path d="M12 8v8M8 12h8" stroke="var(--primary)" stroke-width="2"/>
+          </svg>
+          <h3>Professional Choice</h3>
+          <p>Trusted by athletes and medical professionals worldwide for reliable results.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tab-section">
+      <div class="tab-nav">
+        <button class="tab-button" data-tab="products-content">Products</button>
+        <button class="tab-button" data-tab="features-content">Features</button>
+        <button class="tab-button" data-tab="contact-content">Contact</button>
+      </div>
+      
+      <div id="products-content" class="tab-content active">
+        <div class="container" style="flex: 1; padding-bottom: 0;">
+          <div class="product-showcase">
+            <div class="product-hero">
+              <div>
+                <h1>WrapPro Elite</h1>
+                <p>Experience professional-grade recovery with our flagship cooling wrap system.</p>
+                <button class="cta-button">Order Now</button>
+              </div>
+<div class="product-visual">
+    <img src="C:\Users\leebe\Downloads\bandageimage.jpg" alt="Product description" style="width: 100%; height: 100%; object-fit: contain;" />
+    <style>
+        .product-visual {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</div>
+            </div>
+
+            <div class="specs-grid">
+              <div class="spec-card">
+                <div class="spec-icon">&#x1f551;</div>
+                <h3>2-Hour Cooling</h3>
+                <p>Extended cooling duration for optimal recovery sessions</p>
+              </div>
+              <div class="spec-card">
+                <div class="spec-icon">&#x1f52c;</div>
+                <h3>Medical Grade</h3>
+                <p>FDA-approved materials for safe and effective treatment</p>
+              </div>
+              <div class="spec-card">
+                <div class="spec-icon">&#x2744;</div>
+                <h3>Stay Cool, Stay Supported</h3>
+                <p>Experience ultimate comfort with cold therapy and adjustable compression, no batteries required.</p>
+              </div>
+            </div>
+
+            <div class="features-list">
+              <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="var(--primary)" stroke-width="2"/>
+                  <path d="M8 12l3 3 6-6" stroke="var(--primary)" stroke-width="2" fill="none"/>
+                </svg>
+                <div>
+                  <h4>Smart Compression</h4>
+                  <p>Adaptive pressure system for optimal contact</p>
+                </div>
+              </div>
+              <!-- Add more feature items -->
+            </div>
+
+            <div class="cta-section">
+              <h2>Ready to Transform Your Recovery?</h2>
+              <div class="price-tag">&#x24;19.99</div>
+              <button class="cta-button">Buy Now!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="features-content" class="tab-content">
+        <div class="container" style="flex: 1; padding-bottom: 0;">
+          <div class="product-showcase">
+            <div class="product-hero">
+              <div>
+                <h1>Key Features</h1>
+                <p>Discover what makes WrapPro Elite the ultimate recovery solution</p>
+              </div>
+            </div>
+
+            <div class="features-list">
+              <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="var(--primary)" stroke-width="2"/>
+                  <path d="M8 12l3 3 6-6" stroke="var(--primary)" stroke-width="2" fill="none"/>
+                </svg>
+                <div>
+                  <h4>Customizable Cooling</h4>
+                  <p>Tailored cooling comfort with adjustable compression</p>
+                </div>
+              </div>
+
+              <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="var(--primary)" stroke-width="2"/>
+                  <path d="M8 12l3 3 6-6" stroke="var(--primary)" stroke-width="2" fill="none"/> 
+                </svg>
+                <div>
+                  <h4>Long-Lasting Relief</h4>
+                  <p>Enjoy up to 2 hours of soothing cold therapy without interruptions</p>
+                </div>
+              </div>
+
+              <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="var(--primary)" stroke-width="2"/>
+                  <path d="M8 12l3 3 6-6" stroke="var(--primary)" stroke-width="2" fill="none"/>
+                </svg>
+                <div>
+                  <h4>Effortless Use</h4>
+                  <p>Easy-to-wrap design for convenient and effective cooling anytime</p>
+                </div>
+              </div>
+
+              <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="var(--primary)" stroke-width="2"/> 
+                  <path d="M8 12l3 3 6-6" stroke="var(--primary)" stroke-width="2" fill="none"/>
+                </svg>
+                <div>
+                  <h4>Professional-Grade Materials</h4>
+                  <p>High-quality compression fabric with advanced cooling capabilities</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="about-content" class="tab-content">
+        <div class="container" style="flex: 1; padding-bottom: 0;">
+          <h2>Our Story</h2>
+          <div class="about-grid">
+            <div class="about-content">
+              <p>Founded by athletes for athletes...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="contact-content" class="tab-content">
+        <div id="contact" class="interactive-form" style="margin-bottom: 0; padding-bottom: 2rem;">
+          <div class="form-group">
+            <input type="email" class="input-animated" placeholder="Your email">
+          </div>
+          <div class="form-group">
+            <textarea class="input-animated" placeholder="Your message" rows="5"></textarea>
+          </div>
+          <button class="cta-button" type="submit">Send Message</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>function createParticles() {
+  const container = document.querySelector('.hero');
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.top = `${Math.random() * 100}%`;
+    particle.style.animation = `float ${Math.random() * 10 + 5}s infinite`;
+    container.appendChild(particle);
+  }
+}
+function initParallax() {
+  document.addEventListener('mousemove', e => {
+    const cards = document.querySelectorAll('.feature-card');
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = (e.clientX - centerX) / 20;
+      const deltaY = (e.clientY - centerY) / 20;
+      card.style.transform = `
+                    perspective(1000px) 
+                    rotateX(${-deltaY}deg) 
+                    rotateY(${deltaX}deg)
+                    translateZ(20px)
+                  `;
+    });
+  });
+}
+function createFloatingElements() {
+  const shapes = [];
+  const container = document.querySelector('.hero');
+  for (let i = 0; i < 15; i++) {
+    const shape = document.createElement('div');
+    shape.classList.add('floating-shape');
+    const size = Math.random() * 200 + 50;
+    shape.style.width = `${size}px`;
+    shape.style.height = `${size}px`;
+    shape.style.left = `${Math.random() * 100}%`;
+    shape.style.top = `${Math.random() * 100}%`;
+    shape.style.animationDelay = `${Math.random() * 5}s`;
+    const rotation = Math.random() * 360;
+    shape.style.background = `linear-gradient(${rotation}deg, 
+              rgba(10,21,32,0.8),
+              rgba(0,180,216,0.05),
+              rgba(144,224,239,0.02)
+            )`;
+    container.appendChild(shape);
+    shapes.push(shape);
+  }
+  return shapes;
+}
+function initTabs() {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+  function showTab(tabId) {
+    tabContents.forEach(content => {
+      content.classList.remove('active');
+    });
+    tabButtons.forEach(button => {
+      button.classList.remove('active');
+    });
+    const selectedTab = document.getElementById(tabId);
+    const selectedButton = document.querySelector(`[data-tab="${tabId}"]`);
+    if (selectedTab && selectedButton) {
+      selectedTab.classList.add('active');
+      selectedButton.classList.add('active');
+      selectedTab.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  }
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tabId = button.dataset.tab;
+      showTab(tabId);
+    });
+  });
+  if (tabButtons.length > 0) {
+    showTab(tabButtons[0].dataset.tab);
+  }
+}
+function createSparkles() {
+  const container = document.querySelector('.hero');
+  for (let i = 0; i < 30; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.style.position = 'absolute';
+    sparkle.style.width = '2px';
+    sparkle.style.height = '2px';
+    sparkle.style.background = 'rgba(255,255,255,0.5)';
+    sparkle.style.borderRadius = '50%';
+    sparkle.style.left = `${Math.random() * 100}%`;
+    sparkle.style.top = `${Math.random() * 100}%`;
+    sparkle.style.animation = `sparkle ${Math.random() * 3 + 2}s infinite`;
+    container.appendChild(sparkle);
+  }
+}
+function enhanceFeatureCards() {
+  const cards = document.querySelectorAll('.feature-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+      const particle = document.createElement('div');
+      particle.classList.add('hover-particle');
+      particle.style.left = `${x}px`;
+      particle.style.top = `${y}px`;
+      card.appendChild(particle);
+      setTimeout(() => particle.remove(), 1000);
+    });
+  });
+}
+function showTab(tabId) {
+  const tabContents = document.querySelectorAll('.tab-content');
+  const tabButtons = document.querySelectorAll('.tab-button');
+  tabContents.forEach(content => {
+    content.classList.remove('active');
+  });
+  tabButtons.forEach(button => {
+    button.classList.remove('active');
+  });
+  const selectedTab = document.getElementById(tabId);
+  const selectedButton = document.querySelector(`[data-tab="${tabId}"]`);
+  if (selectedTab && selectedButton) {
+    selectedTab.classList.add('active');
+    selectedButton.classList.add('active');
+    selectedTab.scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  createParticles();
+  initParallax();
+  createFloatingElements();
+  initTabs();
+  createSparkles();
+  enhanceFeatureCards();
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
+        showTab(targetId);showTab(targetId);
+      }
+    });
+  });
+});
+</script>
+<style>
+  .tab-section {
+    background: linear-gradient(180deg, var(--dark) 0%, #0f2030 100%);
+    padding: 6rem 0 0 0;
+    color: var(--light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    flex: 1;
+    padding-bottom: 0;
+  }
+
+  .tab-content {
+    padding: 4rem 2rem 0 2rem;
+  }
+
+  .interactive-form {
+    margin-bottom: 0;
+    padding-bottom: 2rem;
+  }
+
+  .product-showcase {
+    padding-bottom: 0;
+  }
+
+  .cta-section {
+    margin-bottom: 0;
+  }
+</style>
+</body>
+</html>
